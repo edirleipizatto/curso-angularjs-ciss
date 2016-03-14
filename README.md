@@ -1,2 +1,2 @@
 # curso-angularjs-ciss
-Curso de AngularJS - CISS
+Curso de AngularJS - CISS -Treinamento

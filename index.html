@@ -1,31 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp"> 
 <head>
 	<title> Angular JS - CISS</title>
 	<meta charset="UTF-8"> 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">  
+	<script type="text/javascript" src="js/angular.min.js"></script> 
+	<script type="text/javascript" src="js/myApp.js"></script> 
+	<script type="text/javascript" src="js/controller/formCtrl.js"></script> 
 </head>
-<body>
+<body ng-controller="FormCtrl"> 
 	<div class=container>
 
 		<div class="jumbotron"> 
-			<h2> Formulário de Cadastro</h2>
+			<h2> Formulário de Cadastro </h2>
 			<form class="row">
 				<div class=form-group>
+					<legend>Dados Pessoais</legend>
 					<!-- Nome -->					
 					<div class="form-group col-xs-12 col-sm-6">					
 						<label for="name">Nome</label>
-						<input type="text" class="form-control" id="name" placeholder="Digite seu primeiro nome">
+						<input type="text" class="form-control" id="name" ng-model="pessoa.name" placeholder="Digite seu primeiro nome">
 					</div>
 					<!-- SobreNome -->
 					<div class="form-group col-xs-12 col-sm-6">										
 						<label for="lastname">Sobrenome</label>
-						<input type="text" class="form-control" id="lastname" placeholder="Digite seu sobrenome">
-					</div>					
-					
+						<input type="text" class="form-control" id="lastname" ng-model="pessoa.lastname" placeholder="Digite seu sobrenome">
+					</div>										
 				</div>					
 
+
+				<div class=form-group>
+					<legend>Contato</legend>
+
+					<div class="form-group col-xs-12 col-md-4">				
+						<label for="phone">Idade</label>
+						<input type="number" class="form-control" id="age" ng-model="pessoa.age" placeholder="Digite sua Idade">
+					</div>
+
+
+					<!-- Telefone -->
+					<div class="form-group col-xs-12 col-md-4">				
+						<label for="phone">Telefone</label>
+						<input type="text" class="form-control" id="phone" ng-model="pessoa.phone" placeholder="Digite seu telefone">
+					</div>
+
+
+					<!-- Email -->
+					<div class="form-group col-xs-12 col-md-4">				
+						<label for="email">E-mail</label>
+						<input type="email" class="form-control" id="email" ng-model="pessoa.email" placeholder="Digite seu e-mail">
+					</div>					
+
+				</div>
 			</form>
+			<legend>Informações</legend>
+			<p ng-if="pessoa.name"> Nome: <strong ng-bind="pessoa.name"></strong> </p>
+			<p ng-if="pessoa.lastname"> Sobrenome: <strong ng-bind="pessoa.lastname"></strong> </p>
+			<p ng-if="pessoa.age"> Idade: <strong ng-bind="pessoa.age"></strong> </p>
+			<p ng-if="pessoa.phone"> Telefone: <strong ng-bind="pessoa.phone"></strong> </p>
+			<p ng-if="pessoa.email"> Email: <strong ng-bind="pessoa.email"></strong> </p>			
+
+			<span>{{pessoa}}</span>	
+
+			<!-- <p>Olá <span ng-bind="name" ng-bind="lastname"></span>, seu contato é: <span ng-bind="email"></span></p> -->
+
 
 		</div>
 	</div>  

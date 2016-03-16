@@ -73,11 +73,12 @@ myApp.controller('FormCtrl', function($scope) {
 	};
 
 
-	//função para editar uma tarefa
+	//função para deletar uma tarefa
 	$scope.deletaTarefa = function(dataIndex) {
 
 		 var index = $scope.list.indexOf(dataIndex);
  		 $scope.list.splice(dataIndex, 1); 
+
 	};
 
 });

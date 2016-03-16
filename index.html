@@ -40,24 +40,30 @@
 						<th>Check</th>
 						<th>Tarefa</th>
 						<th>Data</th>
-						<th>Opções</th>
+						<th>Editar</th>						
 					</tr>						
 				</thead>
 				<tbody>
 					<tr ng-repeat="item in list | filter : search">
-						<td><input type="checkbox"></input> </td>
+						<td ><input type="checkbox" ng-model="item.check"></input> </td> 						
 						<td ng-bind="item.nomeTarefa"></td>
 						<td ng-bind="item.dataTarefa | date:'dd/MM/yyyy'"></td> 
 						<td>
 							<button class="btn btn-success" ng-click="editaTarefa($index)">
 								<i class="glyphicon glyphicon-pencil"> </i>
 							</button>
-						</td>
+						</td>				
+						<td>
+							<button class="btn btn-success" ng-click="deletaTarefa($index)">
+								<i class="glyphicon glyphicon-trash"> </i>
+							</button>		
+						</td>	
 					</tr>												
 				</tbody>
-			</table>
+			</table>		
 			
-			<!--<div class="row" ng-show="!clicouEditar"> -->
+
+			<!--<div class="row" ng-hide="!clicouEditar"> -->
 			<div class="row" ng-show="clicouEditar">
 
 				<div class="form-group col-xs-8">										
@@ -68,6 +74,7 @@
 				</div>		
 
 			</div>
+
 
 			<!--<p>{{list}}</p> -->
 		</div>

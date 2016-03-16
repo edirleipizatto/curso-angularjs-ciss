@@ -40,12 +40,13 @@
 						<th>Check</th>
 						<th>Tarefa</th>
 						<th>Data</th>
-						<th>Editar</th>						
+						<th>Editar</th>		
+						<th>Excluir</th>
 					</tr>						
 				</thead>
 				<tbody>
 					<tr ng-repeat="item in list | filter : search">
-						<td ><input type="checkbox" ng-model="item.check"></input> </td> 						
+						<td> <input type="checkbox" ng-model="item.checkbox"></input> </td> 						
 						<td ng-bind="item.nomeTarefa"></td>
 						<td ng-bind="item.dataTarefa | date:'dd/MM/yyyy'"></td> 
 						<td>
@@ -71,6 +72,14 @@
 				</div>
 				<div class="col-xs-4">
 					<button class="btn btn-primary pull-right" ng-click="renomearTarefa(renomear)"> Renomear </button>
+				</div>		
+
+			</div>
+
+			<div class="row">
+
+				<div class="col-xs-4">
+					<button class="btn btn-primary pull-right" ng-click="deletaTarefasSelecionadas()"> Deletar Itens selecionados </button>
 				</div>		
 
 			</div>

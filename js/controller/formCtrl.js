@@ -3,7 +3,7 @@ myApp.controller('FormCtrl', function($scope) {
 	$scope.indexTarefa = 0;
 
 	$scope.clicouEditar = false;
-	
+		
 	$scope.pessoa = {
 		name : 'Edirlei',
 		lastname : 'Pizatto',
@@ -14,17 +14,20 @@ myApp.controller('FormCtrl', function($scope) {
 
 	$scope.list = [
 		{
+			checkbox   : false,
 			nomeTarefa : "Lavar o banheiro",
 			dataTarefa : '2016-03-15T02:00:00.123Z'
 		},
 
 		
 		{
+			checkbox   : false,
 			nomeTarefa : "Jogar o Lixo",
 			dataTarefa : '2016-03-15T10:00:00.123Z'
 		},
 
 		{
+			checkbox   : false,
 			nomeTarefa : "Passar Roupa",
 			dataTarefa : '2016-03-15T10:00:00.123Z'
 		}
@@ -35,6 +38,7 @@ myApp.controller('FormCtrl', function($scope) {
 		if (!!data) {
 
 			$scope.list.push({
+				checkbox   : false,
 				nomeTarefa : data,
 				dataTarefa : new Date().getTime()
 			});		
@@ -80,6 +84,18 @@ myApp.controller('FormCtrl', function($scope) {
  		 $scope.list.splice(dataIndex, 1); 
 
 	};
+
+	//função para deletar tarefas selecionadas
+	$scope.deletaTarefasSelecionadas = function() {
+
+		var oldList = $scope.list;
+        $scope.list = [];
+        angular.forEach(oldList, function(x) {
+            if (!x.checkbox) $scope.list.push(x);
+        });
+
+	};
+
 
 });
 

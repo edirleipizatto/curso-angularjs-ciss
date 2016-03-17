@@ -12,10 +12,9 @@
 	<div class=container>
 
 		<div class="jumbotron"> 
-			<h1 ng-bing"'Cadastro de tarefas'"></h1>
+			<h1>Cadastro de tarefas</h1>
 
-			<form class="row">
-
+			<form class="row" ng-hide="clicouEditar">				
 				<div class="form-group">					
 					<label for="name"> Tarefa: </label>
 					<input type="text" class="form-control" id="tarefa" ng-model="tarefa" placeholder="Digite uma Tarefa">
@@ -26,68 +25,76 @@
 
 			</form>
 
-			<hr>
-			.<div class="row">
-			<div class="form-group">
-				<label for "search">Buscar</label>
-				<input type="text" class="form-control" id="search" ng-model="search"></input>
-			</div>
-			<p>{{ search }}</p>
-			<!-- BEGIN TABLE -->
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Check</th>
-						<th>Tarefa</th>
-						<th>Data</th>
-						<th>Editar</th>		
-						<th>Excluir</th>
-					</tr>						
-				</thead>
-				<tbody>
-					<tr ng-repeat="item in list | filter : search">
-						<td> <input type="checkbox" ng-model="item.checkbox"></input> </td> 						
-						<td ng-bind="item.nomeTarefa"></td>
-						<td ng-bind="item.dataTarefa | date:'dd/MM/yyyy'"></td> 
-						<td>
-							<button class="btn btn-success" ng-click="editaTarefa($index)">
-								<i class="glyphicon glyphicon-pencil"> </i>
-							</button>
-						</td>				
-						<td>
-							<button class="btn btn-danger" ng-click="deletaTarefa($index)">
-								<i class="glyphicon glyphicon-trash"> </i>
-							</button>		
-						</td>	
-					</tr>												
-				</tbody>
-			</table>		
-			
-
 			<!--<div class="row" ng-hide="!clicouEditar"> -->
-			<div class="row" ng-show="clicouEditar">
+			<form class="row" ng-show="clicouEditar">
 
-				<div class="form-group col-xs-8">										
+				<div class="form-group col-xl-8">	
+					<label for="name"> Tarefa: </label>									
 					<input type="text" class="form-control" ng-model="renomear">
 				</div>
-				<div class="col-xs-4">
+				<div class="form-group col-xl-2">
 					<button class="btn btn-primary pull-right" ng-click="renomearTarefa(renomear)"> Renomear </button>
 				</div>		
 
-			</div>
-
-			<div class="row">
-
-				<div class="col-xs-4">
-					<button class="btn btn-primary pull-right" ng-click="deletaTarefasSelecionadas()"> Deletar Itens selecionados </button>
+				<div class="form-group col-xl-2">
+					<button class="btn btn-danger pull-right" ng-click="cancelarRenomear()"> Cancelar </button>
 				</div>		
 
+			</form>
+
+			<hr>
+			
+			<div>
+				<h3 ng-hide="list.length"> Nenhuma tarefa cadastrada! </h3> 
 			</div>
+			<div class="row"  ng-show="list.length > 0">
+				<div class="form-group">
+					<label for "search">Buscar</label>
+					<input type="text" class="form-control" id="search" ng-model="search"></input>
+				</div>
+				<p>{{ search }}</p>
+				<!-- BEGIN TABLE -->			
 
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Check</th>
+							<th>Tarefa</th>
+							<th>Data</th>
+							<th>Editar</th>		
+							<th>Excluir</th>
+						</tr>						
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in list | filter : search">
+							<td> <input type="checkbox" ng-model="item.checkbox"></input> </td> 						
+							<td ng-bind="item.nomeTarefa"></td>
+							<td ng-bind="item.dataTarefa | date:'dd/MM/yyyy'"></td> 
+							<td>
+								<button class="btn btn-success" ng-click="editaTarefa($index)">
+									<i class="glyphicon glyphicon-pencil"> </i>
+								</button>
+							</td>				
+							<td>
+								<button class="btn btn-danger" ng-click="deletaTarefa($index)">
+									<i class="glyphicon glyphicon-trash"> </i>
+								</button>		
+							</td>	
+						</tr>												
+					</tbody>
+				</table>		
 
-			<!--<p>{{list}}</p> -->
-		</div>
+				
+				<div class="row" ng-show="list.length > 0">
 
+					<div class="col-xs-4">
+						<button class="btn btn-primary pull-right" ng-click="deletaTarefasSelecionadas()"> Deletar Itens selecionados </button>
+					</div>		
+
+				</div>
+
+				<!--<p>{{list}}</p> -->
+			</div>
 
 
 			<!--<legend>Informações</legend>
@@ -135,10 +142,7 @@
 
 				</div> -->
 
-
-			</div>
-		</div>  
-
-
-	</body>
-	</html>
+		</div>
+	</div>  
+</body>
+</html>

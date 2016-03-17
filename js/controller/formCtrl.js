@@ -15,20 +15,20 @@ myApp.controller('FormCtrl', function($scope) {
 	$scope.list = [
 		{
 			checkbox   : false,
-			nomeTarefa : "Lavar o banheiro",
+			nomeTarefa : "Cortar lenha",
 			dataTarefa : '2016-03-15T02:00:00.123Z'
 		},
 
 		
 		{
 			checkbox   : false,
-			nomeTarefa : "Jogar o Lixo",
+			nomeTarefa : "Buscar as vacas",
 			dataTarefa : '2016-03-15T10:00:00.123Z'
 		},
 
 		{
 			checkbox   : false,
-			nomeTarefa : "Passar Roupa",
+			nomeTarefa : "Tratar os porco",
 			dataTarefa : '2016-03-15T10:00:00.123Z'
 		}
 	];
@@ -60,6 +60,17 @@ myApp.controller('FormCtrl', function($scope) {
 
 	};
 
+
+	//função para editar uma tarefa
+	$scope.cancelarRenomear = function() {		
+		 
+		
+		$scope.clicouEditar = false;
+		$scope.indexTarefa = 0;
+		//$scope.renomear = $scope.list[$scope.indexTarefa].nomeTarefa;	
+
+	};
+
 	//função para renomear uma tarefa
 	$scope.renomearTarefa = function(data) {
 		/*var editObj = {};
@@ -80,9 +91,12 @@ myApp.controller('FormCtrl', function($scope) {
 	//função para deletar uma tarefa
 	$scope.deletaTarefa = function(dataIndex) {
 
-		 var index = $scope.list.indexOf(dataIndex);
+		if ($scope.indexTarefa > 0) {
+ 		 	$scope.cancelarRenomear();	
+ 		 }		 
+		 //var index = $scope.list.indexOf(dataIndex);
  		 $scope.list.splice(dataIndex, 1); 
-
+ 		 
 	};
 
 	//função para deletar tarefas selecionadas
@@ -92,10 +106,10 @@ myApp.controller('FormCtrl', function($scope) {
         $scope.list = [];
         angular.forEach(oldList, function(x) {
             if (!x.checkbox) $scope.list.push(x);
-        });
+        });     
+
 
 	};
-
 
 });
 
